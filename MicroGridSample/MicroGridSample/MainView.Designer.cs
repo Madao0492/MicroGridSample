@@ -1,6 +1,6 @@
 ﻿namespace MicroGridSample
 {
-    partial class Form1
+    partial class MainView
     {
         /// <summary>
         /// 必要なデザイナー変数です。
