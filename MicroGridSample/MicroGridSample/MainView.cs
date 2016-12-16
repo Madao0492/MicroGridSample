@@ -18,7 +18,7 @@ namespace MicroGridSample
             InitializeComponent();
         }
 
-        private MicroGridBattery GetMicroGridBattery(List<DateTime> evListDate, int pattern, int number, string order, double storageCapacity) //マイクログリッドのバッテリ（EV・蓄電池）クラス
+        private MicroGridBattery GetMicroGridBattery(List<DateTime> evListDate, int pattern, int number, string order, double storageCapacity) //マイクログリッドのバッテリ（EV・蓄電池）クラス生成
         {
             MicroGridBattery MGB = new MicroGridBattery();
 
@@ -101,7 +101,7 @@ namespace MicroGridSample
             return MGB;
         }
 
-        private MicroGridOneday GetMicroGridOneday(DateTime dt, List<int> bID, List<int> pID, MicroGridBattery mgb, int peakPattern) //マイクログリッドの1日の推移クラス
+        private MicroGridOneday GetMicroGridOneday(DateTime dt, List<int> bID, List<int> pID, MicroGridBattery mgb, int peakPattern) //マイクログリッドの1日の推移クラス生成
         {
             MicroGridOneday MGO; //返り値用
 
