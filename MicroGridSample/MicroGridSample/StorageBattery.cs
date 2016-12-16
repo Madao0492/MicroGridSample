@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ASYST.ver2
-{
+namespace MicroGridSample { 
     class StorageBattery
     {
         private double[] ChargeCapacity = new double[24];   //(正の数想定)

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ASYST.ver2
+namespace MicroGridSample
 {
     class MicroGridBattery : ICloneable
     {
