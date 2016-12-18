@@ -447,10 +447,16 @@ namespace MicroGridSample
             Console.WriteLine("-- 充キャパ・給ポテ --");
             for (int i = 0; i < 24; i++)
             {
-                Console.WriteLine(i + " : " + mgb.GetAllChargeCapacity(i) + " " + mgb.GetAllDischargeCapacity(i));
+                Console.WriteLine(i + " : " + mgo.MicroGridBatteryBefore.GetAllChargeCapacity(i) + " " + mgo.MicroGridBatteryBefore.GetAllDischargeCapacity(i));
             }
             Console.WriteLine("-- 充キャパ・給ポテ --");
 
+            Console.WriteLine("-- 充キャパ・給ポテ --");
+            for (int i = 0; i < 24; i++)
+            {
+                Console.WriteLine(i + " : " + mgo.MicroGridBatteryAfter.GetAllChargeCapacity(i) + " " + mgo.MicroGridBatteryAfter.GetAllDischargeCapacity(i));
+            }
+            Console.WriteLine("-- 充キャパ・給ポテ --");
         }
     }
 }
