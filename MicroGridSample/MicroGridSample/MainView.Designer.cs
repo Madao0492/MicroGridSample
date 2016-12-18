@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.sqlConnection1 = new System.Data.SqlClient.SqlConnection();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // sqlConnection1
@@ -36,11 +37,22 @@
             this.sqlConnection1.ConnectionString = "Data Source=vader;Initial Catalog=SEEConDB_R3;Integrated Security=True";
             this.sqlConnection1.FireInfoMessageEventOnUserErrors = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(13, 13);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(263, 127);
+            this.Controls.Add(this.button1);
             this.Name = "MainView";
             this.Text = "SampleView";
             this.ResumeLayout(false);
@@ -50,6 +62,7 @@
         #endregion
 
         private System.Data.SqlClient.SqlConnection sqlConnection1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

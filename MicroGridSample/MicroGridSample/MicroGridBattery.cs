@@ -113,7 +113,6 @@ namespace MicroGridSample
         /// <returns>充電キャパシティが足りず充電できなかった量</returns>
         public double ChargeBatteries(int time, double Energy)//Energyは負の数想定
         {
-            //Console.WriteLine("Before Charge : " + time + " : " + Energy);
             if (Energy == 0) { return 0; }
 
             double retEnergy = Energy;
@@ -125,7 +124,6 @@ namespace MicroGridSample
             for(int j = 0; j < storageList.Count; j++)
             {
                 retEnergy = storageList[j].Charge(time, retEnergy);
-                //Console.WriteLine("After Charge : " + time + " : " + retEnergy);
                 if (retEnergy == 0) break;
             }
 
@@ -152,7 +150,6 @@ namespace MicroGridSample
         /// <returns>給電ポテンシャルが足りず給電できなかった量</returns>
         public double DischargeBatteries(int time, double Energy)//Energyは正の数想定
         {
-            //Console.WriteLine("Before Discharge : " + time + " : " + Energy);
             if (Energy == 0) { return 0; }
 
             double retEnergy = Energy;
@@ -164,7 +161,6 @@ namespace MicroGridSample
             for (int j = 0; j < storageList.Count; j++)
             {
                 retEnergy = storageList[j].Discharge(time, retEnergy);
-                //Console.WriteLine("After Discharge : " + time + " : " + retEnergy);
                 if (retEnergy == 0) break;
             }
 

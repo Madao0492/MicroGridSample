@@ -230,15 +230,12 @@ namespace MicroGridSample
             {
                 if (peakTime[i])
                 {
-                    Console.WriteLine("TIME : " + i + " dif : " + differencePG[i]);
                     peakTimeCount++;
                     peakDifferencePGEnergy += differencePG[i];
-                    Console.WriteLine("TIME : " + i + " peak: " + peakDifferencePGEnergy);
                     //次のループへ
                     continue;
                 }
             }
-            Console.WriteLine(DischargeCapacity);
 
             //目標differencePGEV、求給電量
             double aimDifferencePGEV = (peakDifferencePGEnergy + DischargeCapacity) / peakTimeCount;
@@ -255,8 +252,6 @@ namespace MicroGridSample
                 double overGeneration = GetOverGenerationOnehour(i);
                 double peakTimeDischarge = GetDischargeEnergy(i, mgbAft.GetAllDischargeCapacity(i));
 
-                //Console.WriteLine("TIME : " + i + " OG : " + overGeneration + " PD : " + peakTimeDischarge);
-
                 //充電出来なかった量・給電出来なかった量
                 double notcharge = overGeneration;
                 double notdischarge = peakTimeDischarge;
@@ -266,19 +261,47 @@ namespace MicroGridSample
                     notcharge = mgbAft.ChargeBatteries(i, overGeneration);
                     //充電できなかった量が、充電後のPGEV
                     differencePGEV[i] = notcharge;
-                    //Console.WriteLine("TIME : " + i + " NC : " + notcharge + " diff : " + differencePGEV[i]);
                 }
                 if (peakTimeDischarge > 0)
                 {
                     notdischarge = mgbAft.DischargeBatteries(i, peakTimeDischarge);
                     //differencePG - 求給電量 + 給電できなかった量 = 給電後のPGEV
                     differencePGEV[i] = differencePG[i] - peakTimeDischarge + notdischarge;
-                    //Console.WriteLine("TIME : " + i + " NDC : " + notdischarge + " diff : " + differencePGEV[i]);
                 }
             }
         }
 
         /////////////////////////////////////
+        //需要電力量取得
+        public double GetPowerLog(int i)
+        {
+            return powerLog[i];
+        }
+
+        //発電電力量取得
+        public double GetGeneration(int i)
+        {
+            return generation[i];
+        }
+
+        //需要発電差取得
+        public double GetDifferencePG(int i)
+        {
+            return differencePG[i];
+        }
+
+        //EV導入後需要発電差取得
+        public double GetDifferencePGEV(int i)
+        {
+            return differencePGEV[i];
+        }
+
+        //電力供給元需要取得
+        public double GetDemand(int i)
+        {
+            return demand[i];
+        }
+
         //ピーク時充給電前電力量
         public double GetBeforePeakEnergy()
         {
