@@ -444,6 +444,13 @@ namespace MicroGridSample
             Console.WriteLine("PV・EV導入前の余剰発電量[kWh] : " + mgo.GetBeforeOverGeneration());
             Console.WriteLine("PV・EV導入後の余剰発電量[kWh] : " + mgo.GetAfterOverGeneration());
 
+            Console.WriteLine("-- 充キャパ・給ポテ --");
+            for (int i = 0; i < 24; i++)
+            {
+                Console.WriteLine(i + " : " + mgb.GetAllChargeCapacity(i) + " " + mgb.GetAllDischargeCapacity(i));
+            }
+            Console.WriteLine("-- 充キャパ・給ポテ --");
+
         }
     }
 }
