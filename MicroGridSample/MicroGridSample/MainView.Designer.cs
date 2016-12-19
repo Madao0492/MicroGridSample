@@ -30,6 +30,7 @@
         {
             this.sqlConnection1 = new System.Data.SqlClient.SqlConnection();
             this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // sqlConnection1
@@ -47,15 +48,28 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.White;
+            this.textBox1.Location = new System.Drawing.Point(13, 43);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(541, 294);
+            this.textBox1.TabIndex = 1;
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(263, 127);
+            this.ClientSize = new System.Drawing.Size(566, 349);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Name = "MainView";
             this.Text = "SampleView";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -63,6 +77,7 @@
 
         private System.Data.SqlClient.SqlConnection sqlConnection1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

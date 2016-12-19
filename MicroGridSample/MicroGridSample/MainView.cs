@@ -377,13 +377,6 @@ namespace MicroGridSample
 
             MicroGridBattery mgb = GetMicroGridBattery(evListDate, evPattern, number, order, storageCapacity); //グリッドの蓄電池を定義
 
-            Console.WriteLine("-- 充キャパ・給ポテ --");
-            for (int i = 0; i < 24; i++)
-            {
-                Console.WriteLine(i + " : " + mgb.GetAllChargeCapacity(i) + " " + mgb.GetAllDischargeCapacity(i));
-            }
-            Console.WriteLine("-- 充キャパ・給ポテ --");
-
             DateTime dt;
             List<int> bID = new List<int>();
             List<int> pID = new List<int>(); //駐車場・駐輪場ID：本例では不使用
@@ -400,15 +393,15 @@ namespace MicroGridSample
 
             MicroGridOneday mgo = GetMicroGridOneday(dt, bID, pID, mgb, peakPattern, rate);
 
-            Console.WriteLine("-- 1日の需要・発電・差分・バッテリー導入差分・東電・ピークかどうか --");
+            WriteToTextBox("-- 1日の需要・発電・差分・バッテリー導入差分・東電・ピークかどうか --");
             for (int i = 0; i < 24; i++)
             {
-                Console.WriteLine(i + " : " + mgo.GetPowerLog(i) + " " + mgo.GetGeneration(i) + " " + mgo.GetDifferencePG(i) + " " + mgo.GetDifferencePGEV(i) + " " + mgo.GetDemand(i) + " " + mgo.Peaktime[i]);
+                WriteToTextBox(i + " : " + mgo.GetPowerLog(i) + " " + mgo.GetGeneration(i) + " " + mgo.GetDifferencePG(i) + " " + mgo.GetDifferencePGEV(i) + " " + mgo.GetDemand(i) + " " + mgo.Peaktime[i]);
             }
-            Console.WriteLine("-- 1日の需要・発電・差分・バッテリー導入差分・東電・ピークかどうか --");
+            WriteToTextBox("-- 1日の需要・発電・差分・バッテリー導入差分・東電・ピークかどうか --");
 
             //1時間ごとのPV余剰量やEVへの充電量・給電量は計算で導出可（以下）
-            Console.WriteLine("-- 1日のPVの余剰量・EVへの充電量・EVからの給電量 --");
+            WriteToTextBox("-- 1日のPVの余剰量・EVへの充電量・EVからの給電量 --");
             for (int i = 0; i < 24; i++)
             {
                 double overGeneration, EVCharge, EVDischarge;
@@ -433,30 +426,35 @@ namespace MicroGridSample
                     EVDischarge = 0;
                 }
 
-                Console.WriteLine(i + " : " + overGeneration + " " + EVCharge + " " + EVDischarge);
+                WriteToTextBox(i + " : " + overGeneration + " " + EVCharge + " " + EVDischarge);
             }
-            Console.WriteLine("-- 1日のPVの余剰量・EVへの充電量・EVからの給電量 --");
+            WriteToTextBox("-- 1日のPVの余剰量・EVへの充電量・EVからの給電量 --");
 
-            Console.WriteLine("PV・EV導入前のピーク時間帯エネルギー量[kWh] : " + mgo.GetBeforePeakEnergy());
-            Console.WriteLine("PV・EV導入後のピーク時間帯エネルギー量[kWh] : " + mgo.GetAfterPeakEnergy());
-            Console.WriteLine("PV・EV導入前のピーク時間帯最大電力[kW] : " + mgo.GetPeakBeforeMaxWatt());
-            Console.WriteLine("PV・EV導入後のピーク時間帯最大電力[kW] : " + mgo.GetPeakAfterMaxWatt());
-            Console.WriteLine("PV・EV導入前の余剰発電量[kWh] : " + mgo.GetBeforeOverGeneration());
-            Console.WriteLine("PV・EV導入後の余剰発電量[kWh] : " + mgo.GetAfterOverGeneration());
+            WriteToTextBox("PV・EV導入前のピーク時間帯エネルギー量[kWh] : " + mgo.GetBeforePeakEnergy());
+            WriteToTextBox("PV・EV導入後のピーク時間帯エネルギー量[kWh] : " + mgo.GetAfterPeakEnergy());
+            WriteToTextBox("PV・EV導入前のピーク時間帯最大電力[kW] : " + mgo.GetPeakBeforeMaxWatt());
+            WriteToTextBox("PV・EV導入後のピーク時間帯最大電力[kW] : " + mgo.GetPeakAfterMaxWatt());
+            WriteToTextBox("PV・EV導入前の余剰発電量[kWh] : " + mgo.GetBeforeOverGeneration());
+            WriteToTextBox("PV・EV導入後の余剰発電量[kWh] : " + mgo.GetAfterOverGeneration());
 
-            Console.WriteLine("-- 充キャパ・給ポテ --");
+            WriteToTextBox("-- 充キャパ・給ポテ（充給電なし） --");
             for (int i = 0; i < 24; i++)
             {
-                Console.WriteLine(i + " : " + mgo.MicroGridBatteryBefore.GetAllChargeCapacity(i) + " " + mgo.MicroGridBatteryBefore.GetAllDischargeCapacity(i));
+                WriteToTextBox(i + " : " + mgo.MicroGridBatteryBefore.GetAllChargeCapacity(i) + " " + mgo.MicroGridBatteryBefore.GetAllDischargeCapacity(i));
             }
-            Console.WriteLine("-- 充キャパ・給ポテ --");
+            WriteToTextBox("-- 充キャパ・給ポテ（充給電なし） --");
 
-            Console.WriteLine("-- 充キャパ・給ポテ --");
+            WriteToTextBox("-- 充キャパ・給ポテ（充給電あり） --");
             for (int i = 0; i < 24; i++)
             {
-                Console.WriteLine(i + " : " + mgo.MicroGridBatteryAfter.GetAllChargeCapacity(i) + " " + mgo.MicroGridBatteryAfter.GetAllDischargeCapacity(i));
+                WriteToTextBox(i + " : " + mgo.MicroGridBatteryAfter.GetAllChargeCapacity(i) + " " + mgo.MicroGridBatteryAfter.GetAllDischargeCapacity(i));
             }
-            Console.WriteLine("-- 充キャパ・給ポテ --");
+            WriteToTextBox("-- 充キャパ・給ポテ（充給電あり） --");
+        }
+
+        private void WriteToTextBox(string str)
+        {
+            textBox1.AppendText(str + Environment.NewLine);
         }
     }
 }
